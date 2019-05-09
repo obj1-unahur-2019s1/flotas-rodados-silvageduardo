@@ -7,7 +7,7 @@ class Corsa {
 	method peso(){return 1300}
 	}
 	
-class Renault {
+class Kwid {
 	var property tanqueDeGas = false
 	const tanqueAdicional = 150
 	method capacidad(){ return if (tanqueDeGas){ 3 } else{ 4 } }
@@ -16,27 +16,30 @@ class Renault {
 	method color(){return "azul"}
 }
 
+object motorPulenta{
+	method peso(){return 800}
+	method velocidadMaxima(){return 130 }
+}
+object motorBataton{
+	method peso(){return 500 }
+	method velocidadMaxima(){return 80 }
+}
+object interiorComodo{
+	method peso(){return 700}
+	method capacidad(){return 5}
+}
+object interiorPopular{
+	method capacidad(){return 12}
+	method peso(){return 1000}
+}
 object traffic{
-	var property interior = "comodo" 
-	var property motor = "pulenta"
+	var property interior =  interiorComodo
+	var property motor = motorPulenta
 	const trafficVacia = 4000
-	const motorPulenta = 800
-	const interiorComodo = 700
-	const interiorPopular = 1000
-	const motorBataton = 500
-	method capacidad(){ return if (interior == "comodo"){ 5 }else{ 12 }}
-	method velocidadMaxima(){ return if (motor == "pulenta"){ 130 }else{ 80 } }
-	method peso(){ 
-		return if( interior and motor ){
-			trafficVacia + interiorComodo + motorPulenta
-		}else if ( not interior and motor){
-			trafficVacia + interiorPopular + motorPulenta
-		}else if(  interior and not motor){
-			trafficVacia + interiorComodo + motorBataton
-		}else{
-			trafficVacia + interiorPopular + motorBataton
-		}
-	}
+	
+	method capacidad(){ return interior.capacidad()}
+	method velocidadMaxima(){ return motor.velocidadMaxima()}
+	method peso(){ 	return trafficVacia + motor.peso() + interior.peso()	}
 	method color(){return "blanco"}
 	
 }

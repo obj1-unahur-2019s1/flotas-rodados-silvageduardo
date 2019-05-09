@@ -1,0 +1,69 @@
+import rodados.*
+import dependencias.*
+
+test "dependencia " {
+	var dependenciaDeporte = new Dependencia()
+	dependenciaDeporte.empleados(45)
+	assert.equals(45,dependenciaDeporte.empleados())
+	/*
+	 * var corsaVerde = new Corsa(color = "verde")
+	 */
+	var cachito = new Corsa()
+	cachito.color("rojo")
+	assert.equals("rojo",cachito.color())
+	var corsaAzul = new Corsa()
+	corsaAzul.color("azul")
+	assert.equals("azul",corsaAzul.color())
+	var corsaVerde = new Corsa()
+	corsaVerde.color("verde")
+	assert.equals("verde",corsaVerde.color())
+	var kwidConTanque = new Kwid() 
+	kwidConTanque.tanqueDeGas(true)	
+	assert.that(kwidConTanque.tanqueDeGas())
+	var autoEspecial = new AutosEspeciales( capacidad = 5,velocidadMaxima = 160, peso = 1200 , color = "beige")
+//	autoEspecial.capacidad(5)
+//	autoEspecial.velocidadMaxima(160)
+//	autoEspecial.peso(1200)
+//	autoEspecial.color("beige")
+	assert.equals(5,autoEspecial.capacidad())
+	assert.equals(160,autoEspecial.velocidadMaxima())
+	assert.equals(1200,autoEspecial.peso())
+	assert.equals("beige",autoEspecial.color())
+	dependenciaDeporte.agregarAFlota(cachito)
+	dependenciaDeporte.agregarAFlota(corsaAzul)
+	dependenciaDeporte.agregarAFlota(corsaVerde)
+	dependenciaDeporte.agregarAFlota(kwidConTanque)
+	dependenciaDeporte.agregarAFlota(autoEspecial)
+	
+	assert.equals(6450,dependenciaDeporte.pesoTotalFlota())
+	assert.that(dependenciaDeporte.estaBienEquipada())
+	assert.equals(7,dependenciaDeporte.capacidadTotalEnColor("azul"))
+	assert.equals("beige",dependenciaDeporte.colorDelRodadoMasRapido())
+	assert.that(dependenciaDeporte.esGrande())
+	assert.equals(25,dependenciaDeporte.capacidadFaltante())
+	
+	
+	var dependenciaCultura = new Dependencia()
+	dependenciaCultura.empleados(31)
+	assert.equals(31,dependenciaCultura.empleados())
+	
+	var kwidSinTanque = new Kwid()
+	kwidSinTanque.tanqueDeGas(false)
+	traffic.interior(interiorPopular)
+	traffic.motor(motorBataton)
+	
+	dependenciaCultura.agregarAFlota(cachito)
+	dependenciaCultura.agregarAFlota(kwidConTanque)
+	dependenciaCultura.agregarAFlota(kwidConTanque)
+	dependenciaCultura.agregarAFlota(kwidSinTanque)
+	dependenciaCultura.agregarAFlota(traffic)
+	
+	assert.equals(10700,dependenciaCultura.pesoTotalFlota())
+	assert.notThat(dependenciaCultura.estaBienEquipada())
+	assert.equals(10,dependenciaCultura.capacidadTotalEnColor("azul"))
+	assert.equals("rojo",dependenciaCultura.colorDelRodadoMasRapido())
+	assert.notThat(dependenciaCultura.esGrande())
+	assert.equals(5,dependenciaCultura.capacidadFaltante())
+	
+	}
+
