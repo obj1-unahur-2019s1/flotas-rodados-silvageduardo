@@ -7,6 +7,7 @@ test "dependencia " {
 	assert.equals(45,dependenciaDeporte.empleados())
 	/*
 	 * var corsaVerde = new Corsa(color = "verde")
+	 * dependenciaDeporte.agregarAFlota(new Corsa(colo = "azul"))
 	 */
 	var cachito = new Corsa()
 	cachito.color("rojo")
