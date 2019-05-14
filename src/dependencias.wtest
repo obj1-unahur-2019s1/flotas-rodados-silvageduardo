@@ -1,26 +1,23 @@
 import rodados.*
 import dependencias.*
-
-test "dependencia " {
-	var dependenciaDeporte = new Dependencia()
+import pedidos.*
+describe "dependencias"{
+	var cachito = new Corsa(color = "rojo")
+	
+test "dependencia deport y cultura" {
+	const dependenciaDeporte = new Dependencia()
 	dependenciaDeporte.empleados(45)
-	assert.equals(45,dependenciaDeporte.empleados())
 	/*
 	 * var corsaVerde = new Corsa(color = "verde")
-	 * dependenciaDeporte.agregarAFlota(new Corsa(colo = "azul"))
+	 * dependenciaDeporte.agregarAFlota(new Corsa(color = "azul"))
 	 */
-	var cachito = new Corsa()
-	cachito.color("rojo")
-	assert.equals("rojo",cachito.color())
+	
 	var corsaAzul = new Corsa()
 	corsaAzul.color("azul")
-	assert.equals("azul",corsaAzul.color())
 	var corsaVerde = new Corsa()
 	corsaVerde.color("verde")
-	assert.equals("verde",corsaVerde.color())
 	var kwidConTanque = new Kwid() 
 	kwidConTanque.tanqueDeGas(true)	
-	assert.that(kwidConTanque.tanqueDeGas())
 	var autoEspecial = new AutosEspeciales( capacidad = 5,velocidadMaxima = 160, peso = 1200 , color = "beige")
 //	autoEspecial.capacidad(5)
 //	autoEspecial.velocidadMaxima(160)
@@ -44,7 +41,7 @@ test "dependencia " {
 	assert.equals(25,dependenciaDeporte.capacidadFaltante())
 	
 	
-	var dependenciaCultura = new Dependencia()
+	const dependenciaCultura = new Dependencia()
 	dependenciaCultura.empleados(31)
 	assert.equals(31,dependenciaCultura.empleados())
 	
@@ -67,4 +64,16 @@ test "dependencia " {
 	assert.equals(5,dependenciaCultura.capacidadFaltante())
 	
 	}
+test "pedidos cachito satisface"{
+	const pedido1 = new Viaje( distanciaARecorrer = 960 , tiempoMaximo = 8, cantidadPasajeros = 4, 
+				coloresIncompatibles = #{"azul","negro"})
+	assert.that(pedido1.satisfacePedido(cachito))
+}
 
+test "pedidos cachito no satisface"{
+	const pedido2 = new Viaje( distanciaARecorrer = 960 , tiempoMaximo = 6, cantidadPasajeros = 6, 
+				coloresIncompatibles = #{"azul","rojo","negro"})
+	assert.notThat(pedido2.satisfacePedido(cachito))
+}
+
+}
